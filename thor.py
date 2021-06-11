@@ -22,13 +22,13 @@ def main():
         if status == 'AllClear':
             prev_extreme = 0
             set_light(pf, 0)
-        elif status == 'RedAlert':
-            prev_extreme = 1
-            set_light(pf, 0)
         elif status == 'Caution':
             set_light(pf, prev_extreme)
         elif status == 'Warning':
             set_light(pf, 1)
+        elif status == 'RedAlert':
+            prev_extreme = 1
+            set_light(pf, 0)
         else:
             # WTF?
             pass
