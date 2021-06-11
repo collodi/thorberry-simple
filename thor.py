@@ -4,7 +4,11 @@ import pifaceio
 import time
 
 def get_status():
-    r = requests.get('http://maclay.thormobile3.net/FL0654.xml')
+	ms = round(time.time() * 1000)
+	r = requests.get(
+			'http://maclay.thormobile3.net/FL0654.xml',
+			params = { 'ms': ms }
+		)
     data = xmltodict.parse(r.content)['loadmovie']
     return data['thordata']['lightningalert']
 
