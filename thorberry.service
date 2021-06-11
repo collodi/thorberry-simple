@@ -1,0 +1,15 @@
+# /etc/systemd/system/thorberry.service
+
+[Unit]
+Description=thorberry
+Requires=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/thorberry-simple
+ExecStart=/usr/bin/python3 thor.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
