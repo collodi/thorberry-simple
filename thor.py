@@ -28,7 +28,7 @@ def main():
             set_light(pf, 1)
         elif status == 'RedAlert':
             prev_extreme = 1
-            set_light(pf, 0)
+            set_light(pf, 1)
         else:
             # WTF?
             pass
