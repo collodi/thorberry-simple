@@ -1,16 +1,18 @@
 import requests
-import xmltodict
+import json
 import pifaceio
 import time
 
 def get_status():
-	ms = round(time.time() * 1000)
-	r = requests.get(
-			'http://maclay.thormobile3.net/FL0654.xml',
-			params = { 'ms': ms }
-		)
-    data = xmltodict.parse(r.content)['loadmovie']
-    return data['thordata']['lightningalert']
+    ms = round(time.time() * 1000)
+    r = requests.get(
+                'http://360.thormobile.net/thorcloud/api/productionpackets/GetBySystemID',
+                params = { 'ids': 3360, 'ms': ms }
+        )
+
+    data = json.loads(r.content)
+    data = data[list(data.keys())[0]]
+    return data['FriendlyAdvisoryLevel']
 
 def set_light(pf, value):
     pf.write_pin(0, not value)
